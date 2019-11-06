@@ -3,11 +3,12 @@ const images = $('a');
 
 searchBar.keyup(function() {
     let searchTerm = searchBar.val().toLowerCase();
-        images.show();
-        if (searchTerm !== '') {
-            images.not('[data-caption*="' + searchTerm + '"]').hide();
+    images.filter(function ( index )
+        {
+            $(this).toggle($(this).attr('data-caption').toLowerCase().indexOf(searchTerm) > -1);
         }
-    }
+    );
+}
 );
 
 $('[data-fancybox="gallery"]').fancybox({
